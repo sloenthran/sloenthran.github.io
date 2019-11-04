@@ -7,7 +7,7 @@ $(window).on("load", function() {
         $(".wrapper").addClass("overlay");
         return false;
     });
-    $(".close-box").on("click", function(){
+    $("#close-question-box").on("click", function(){
         $("#question-box").removeClass("open");
         $(".wrapper").removeClass("overlay");
         return false;
