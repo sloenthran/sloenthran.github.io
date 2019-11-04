@@ -39,6 +39,8 @@ $(window).on("load", function() {
 });
 
 $("#login-form").on("submit", function() {
+    $("#error-login").hide();
+
     var _username = $('#login-username').val();
     var _password = $('#login-password').val();
 
@@ -49,7 +51,14 @@ $("#login-form").on("submit", function() {
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: function(data){
-            console.log(data);
+            $.cookie('token', data.token)
+
+            return true;
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            $("#error-login").html(responseText.message);
+            $("#error-login").show();
         }
     });
 
