@@ -37,7 +37,7 @@ $(window).on("load", function() {
         return false;
     });
 
-    $('input#submit-login-button').click( function() {
+    $('button#submit-login-button').click( function() {
         var _username = $('#login-username').val();
         var _password = $('#login-password').val();
 
