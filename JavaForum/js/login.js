@@ -6,7 +6,7 @@ $(document).ready(function() {
         jQuery.ajax ({
             url: "https://java-forum-application.herokuapp.com/login",
             type: "POST",
-            data: username: this.username, password: this.password,
+            data: JSON.stringify({username: this.username, password: this.password}),
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function(data){
