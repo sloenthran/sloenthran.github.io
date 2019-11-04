@@ -1,55 +1,18 @@
 $(document).ready(function() {
-    $('#test').click(function() {
-        $.ajax({
-            type: 'GET',
-            url: '/api/profile',
-            beforeSend: function(xhr) {
-                if (localStorage.token) {
-                    xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.token);
-                }
-            },
-            success: function(data) {
-                alert('Hello ' + data.name + '! You have successfully accessed to /api/profile.');
-            },
-            error: function() {
-                alert("Sorry, you are not logged in.");
-            }
-        });
-    });
-    $('#goodLogin').click(function() {
-        $.ajax({
+    $("#login_form").submit(function(event){
+        var username      = $('#login-username').val();
+        var password   = $('#login-password').val();
+
+        jQuery.ajax ({
+            url: "https://java-forum-application.herokuapp.com/login",
             type: "POST",
-            url: "/login",
-            data: {
-                username: "john.doe",
-                password: "foobar"
-            },
-            success: function(data) {
-                localStorage.token = data.token;
-                alert('Got a token from the server! Token: ' + data.token);
-            },
-            error: function() {
-                alert("Login Failed");
+            data: username: this.username, password: this.password,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function(data){
+                $.cookie('token',data.token);
+                alert(data.token);
             }
         });
-    });
-    $('#badLogin').click(function() {
-        $.ajax({
-            type: "POST",
-            url: "/login",
-            data: {
-                username: "john.doe",
-                password: "foobarfoobar"
-            },
-            success: function(data) {
-                alert("ERROR: it is not supposed to alert.");
-            },
-            error: function() {
-                alert("Login Failed");
-            }
-        });
-    });
-    $('#logout').click(function() {
-        localStorage.clear();
-    });
+    })
 });
