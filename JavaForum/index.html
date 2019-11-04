@@ -33,8 +33,8 @@
 
                 <div class="login_register">
                     <ul>
-                        <li><a href="#" title="" class="login-question">Login</a></li>
-                        <li><a href="#" title="" class="register-question">Register</a></li>
+                        <li><a href="#" title="" class="login-box">Login</a></li>
+                        <li><a href="#" title="" class="register-box">Register</a></li>
                     </ul>
                 </div>
 
@@ -144,8 +144,7 @@
                 <input type="text" name="tags" placeholder="Tags">
                 <textarea placeholder="Description"></textarea>
                 <button type="submit" class="save">Submit</button>
-                <button type="submit" class="cancel">Cancel</button>
-            </form>
+\            </form>
 
             <a href="#" title="" id="close-question-box" class="close-box"><i class="fa fa-close"></i></a>
         </div>
@@ -153,17 +152,30 @@
 
     <div class="overview-box" id="login-box">
         <div class="overview-edit">
-            <h3>Ask a Question</h3>
+            <h3>Login</h3>
 
             <form>
-                <input type="text" name="question" placeholder="Type Question Here">
-                <input type="text" name="tags" placeholder="Tags">
-                <textarea placeholder="Description"></textarea>
-                <button type="submit" class="save">Submit</button>
-                <button type="submit" class="cancel">Cancel</button>
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <button type="submit" class="save">Login</button>
             </form>
 
-            <a href="#" title="" class="close-box"><i class="fa fa-close"></i></a>
+            <a href="#" title="" id="close-login-box" class="close-box"><i class="fa fa-close"></i></a>
+        </div>
+    </div>
+
+    <div class="overview-box" id="register-box">
+        <div class="overview-edit">
+            <h3>Register</h3>
+
+            <form>
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <input type="email" name="email" placeholder="Email">
+                <button type="submit" class="save">Register</button>
+            </form>
+
+            <a href="#" title="" id="close-register-box" class="close-box"><i class="fa fa-close"></i></a>
         </div>
     </div>
 
