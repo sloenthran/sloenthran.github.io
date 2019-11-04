@@ -36,4 +36,20 @@ $(window).on("load", function() {
         $(".wrapper").removeClass("overlay");
         return false;
     });
+
+    $('input#submit-login-button').click( function() {
+        var _username = $('#login-username').val();
+        var _password = $('#login-password').val();
+
+        jQuery.ajax ({
+            url: "https://java-forum-application.herokuapp.com/login",
+            type: "POST",
+            data: JSON.stringify({username: _username, password: _password}),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function(data){
+                console.log(data);
+            }
+        });
+    })
 });
