@@ -11,12 +11,12 @@ $("#login-form").on("submit", function() {
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: function(data){
-            $.cookie('token', data.token);
+            localStorage.token = data.token;
 
             $("#login-box").removeClass("open");
             $(".wrapper").removeClass("overlay");
 
-            alert("Login successful!")
+            location.href = "index_logged.html";
 
             return true;
         },

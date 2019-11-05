@@ -31,11 +31,19 @@
                     </ul>
                 </div>
 
-                <div class="login_register">
-                    <ul>
-                        <li><a href="#" title="" class="login-box">Login</a></li>
-                        <li><a href="#" title="" class="register-box">Register</a></li>
-                    </ul>
+                <div class="user-account">
+                    <div class="user-info">
+                        <a href="#" title="" id="user-name"></a>
+                        <i class="fa fa-sort-down"></i>
+                    </div>
+
+                    <div class="user-account-settingss" id="users" style="display: none;">
+                        <ul class="us-links">
+                            <li><a href="#" title="">Change password</a></li>
+                            <li><a href="#" title="">Change email</a></li>
+                        </ul>
+                        <h3 class="tc"><a href="#" id="logout" title="">Logout</a></h3>
+                    </div>
                 </div>
 
             </div>
@@ -136,47 +144,12 @@
 
         </div>
     </div>
-
-    <div class="overview-box" id="login-box">
-        <div class="overview-edit">
-            <h3>Login</h3>
-
-            <p id="error-login" style="color: red; font-size: large;"></p><br>
-
-            <form id="login-form">
-                <input type="text" id="login-username" name="username" placeholder="Username" required>
-                <input type="password" id="login-password" name="password" placeholder="Password" required>
-                <button type="submit" id="submit-login-button" class="save">Login</button>
-            </form>
-
-            <a href="#" title="" id="close-login-box" class="close-box"><i class="fa fa-close"></i></a>
-        </div>
-    </div>
-
-    <div class="overview-box" id="register-box">
-        <div class="overview-edit">
-            <h3>Register</h3>
-
-            <p id="error-register" style="color: red; font-size: large;"></p><br>
-
-            <form id="register-form">
-                <input type="text" id="register-username" name="username" placeholder="Username" required>
-                <input type="password" id="register-password" name="password" placeholder="Password"  minlength="6" required>
-                <input type="email" id="register-email" name="email" placeholder="Email" required>
-                <button type="submit" id="register-submit-button" class="save">Register</button>
-            </form>
-
-            <a href="#" title="" id="close-register-box" class="close-box"><i class="fa fa-close"></i></a>
-        </div>
-    </div>
-
 </div>
 
 <script type="text/javascript" src="./js/jquery.min.js"></script>
-<script type="text/javascript" src="js/loginRedirect.js"></script>
+<script type="text/javascript" src="./js/authorization_checker.js"></script>
 <script type="text/javascript" src="./js/askQuestion.js"></script>
-<script type="text/javascript" src="./js/register.js"></script>
-<script type="text/javascript" src="./js/login.js"></script>
+<script type="text/javascript" src="./js/authorizedUsersScripts.js"></script>
 
 </body>
 </html>
