@@ -38,6 +38,7 @@ $(window).on("load", function() {
     });
 });
 
+//Login
 $("#login-form").on("submit", function() {
     $("#error-login").hide();
 
@@ -59,6 +60,34 @@ $("#login-form").on("submit", function() {
             var responseText = jQuery.parseJSON(jqXHR.responseText);
             $("#error-login").html(responseText.message);
             $("#error-login").show();
+        }
+    });
+
+    return false;
+})
+
+$("#register-form").on("submit", function() {
+    $("#error-register").hide();
+
+    var _username = $('#register-username').val();
+    var _password = $('#register-password').val();
+    var _email = $('#register-email').val();
+
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/register",
+        type: "POST",
+        data: JSON.stringify({username: _username, password: _password, email: _email}),
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function(data){
+            $.cookie('token', data.token)
+
+            return true;
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            $("#error-register").html(responseText.message);
+            $("#error-register").show();
         }
     });
 

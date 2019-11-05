@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="./css/responsive.css">
 
     <script src="https://kit.fontawesome.com/ebf96043b7.js" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
 </head>
 
 <body oncontextmenu="return false;">
@@ -157,8 +158,8 @@
             <p id="error-login" style="color: red; font-size: large;"></p><br>
 
             <form id="login-form">
-                <input type="text" id="login-username" name="username" placeholder="Username">
-                <input type="password" id="login-password" name="password" placeholder="Password">
+                <input type="text" id="login-username" name="username" placeholder="Username" required>
+                <input type="password" id="login-password" name="password" placeholder="Password" required>
                 <button type="submit" id="submit-login-button" class="save">Login</button>
             </form>
 
@@ -170,10 +171,12 @@
         <div class="overview-edit">
             <h3>Register</h3>
 
-            <form>
-                <input type="text" id="register-username" name="username" placeholder="Username">
-                <input type="password" id="register-password" name="password" placeholder="Password">
-                <input type="email" id="register-email" name="email" placeholder="Email">
+            <p id="error-register" style="color: red; font-size: large;"></p><br>
+
+            <form id="register-form">
+                <input type="text" id="register-username" name="username" placeholder="Username" required>
+                <input type="password" id="register-password" name="password" placeholder="Password"  minlength="6" required>
+                <input type="email" id="register-email" name="email" placeholder="Email" required>
                 <button type="submit" id="register-submit-button" class="save">Register</button>
             </form>
 
