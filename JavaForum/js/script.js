@@ -80,9 +80,7 @@ $("#register-form").on("submit", function() {
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: function(data){
-            $.cookie('token', data.token)
-
-            return true;
+            alert(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             var responseText = jQuery.parseJSON(jqXHR.responseText);
