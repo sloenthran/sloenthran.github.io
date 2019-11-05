@@ -64,8 +64,9 @@ $("#login-form").on("submit", function() {
     });
 
     return false;
-})
+});
 
+//Register
 $("#register-form").on("submit", function() {
     $("#error-register").hide();
 
@@ -90,4 +91,4 @@ $("#register-form").on("submit", function() {
     });
 
     return false;
-})
+});
