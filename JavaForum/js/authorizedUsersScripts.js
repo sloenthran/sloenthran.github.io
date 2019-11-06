@@ -50,8 +50,6 @@ $("#change-password-form").on("submit", function() {
         type: "PUT",
         data: JSON.stringify({oldPassword: _oldPass, newPassword: _newPass}),
         success: function(data){
-            localStorage.token = data.token;
-
             $("#change-password-box").removeClass("open");
             $(".wrapper").removeClass("overlay");
 
@@ -92,10 +90,8 @@ $("#change-email-form").on("submit", function() {
     jQuery.ajax ({
         url: "https://java-forum-application.herokuapp.com/user/change/email",
         type: "PUT",
-        data: JSON.stringify({email: _newMail}),
+        data: JQUERY.param({email: _newMail}),
         success: function(data){
-            localStorage.token = data.token;
-
             $("#change-email-box").removeClass("open");
             $(".wrapper").removeClass("overlay");
 
