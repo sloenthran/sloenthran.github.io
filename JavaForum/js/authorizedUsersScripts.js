@@ -90,7 +90,7 @@ $("#change-email-form").on("submit", function() {
     jQuery.ajax ({
         url: "https://java-forum-application.herokuapp.com/user/change/email",
         type: "PUT",
-        data: JQUERY.param({email: _newMail}),
+        data: jQuery.param({email: _newMail}),
         success: function(data){
             $("#change-email-box").removeClass("open");
             $(".wrapper").removeClass("overlay");
