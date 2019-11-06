@@ -14,8 +14,6 @@ $('#logout').click(function() {
 
 $(".user-info").click(function() {
     $(".user-account-settingss").slideToggle( "fast");
-    $("#message").not($(this).next("#message")).slideUp();
-    $("#notification").not($(this).next("#notification")).slideUp();
 });
 
 $(document).ready(function() {
@@ -67,10 +65,11 @@ $("#change-password-form").on("submit", function() {
 $(".change-password-box").on("click", function(){
     $("#change-password-box").addClass("open");
     $(".wrapper").addClass("overlay");
+    $(".user-account-settingss").slideToggle( "fast");
     return false;
 });
 
-$("#change-password-box").on("click", function(){
+$("#close-change-password-box").on("click", function(){
     $("#change-password-box").removeClass("open");
     $(".wrapper").removeClass("overlay");
     return false;
