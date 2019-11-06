@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    if(!localStorage.token) {
+        location.href = "index.html";
+    }
+});
+
 $.ajaxSetup({
     beforeSend: function (xhr)
     {
@@ -76,3 +82,47 @@ $("#close-change-password-box").on("click", function(){
 });
 
 /////////////////////////////////// END CHANGE PASSWORD ///////////////////////////////////
+
+/////////////////////////////////// CHANGE EMAIL ///////////////////////////////////
+
+$("#change-email-form").on("submit", function() {
+    $("#error-change-email").hide();
+
+    var _newMail = $('#change-email-new').val();
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/user/change/email",
+        type: "PUT",
+        data: JSON.stringify({email: _newMail}),
+        success: function(data){
+            localStorage.token = data.token;
+
+            $("#change-email-box").removeClass("open");
+            $(".wrapper").removeClass("overlay");
+
+            alert("Email change successful!");
+
+            return true;
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            $("#error-change-email").html(responseText.message);
+            $("#error-change-email").show();
+        }
+    });
+    return false;
+});
+
+$(".change-email-box").on("click", function(){
+    $("#change-email-box").addClass("open");
+    $(".wrapper").addClass("overlay");
+    $(".user-account-settingss").slideToggle( "fast");
+    return false;
+});
+
+$("#close-change-email-box").on("click", function(){
+    $("#change-email-box").removeClass("open");
+    $(".wrapper").removeClass("overlay");
+    return false;
+});
+
+/////////////////////////////////// END CHANGE EMAIL ///////////////////////////////////
