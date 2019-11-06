@@ -64,7 +64,7 @@ $("#change-password-form").on("submit", function() {
     return false;
 });
 
-$("#change-password-box").on("click", function(){
+$(".change-password-box").on("click", function(){
     $("#change-password-box").addClass("open");
     $(".wrapper").addClass("overlay");
     return false;
