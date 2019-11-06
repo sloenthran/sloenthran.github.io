@@ -1,3 +1,187 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>JavaForum</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/responsive.css">
+
+    <script src="https://kit.fontawesome.com/ebf96043b7.js" crossorigin="anonymous"></script>
+</head>
+
+<body oncontextmenu="return false;" id="body">
+
+<div class="wrapper">
+    <header>
+        <div class="container">
+            <div class="header-data">
+                <div class="logo pd-btm">
+                    <a href="https://sloenthran.github.io/JavaForum/" title=""><img src="./images/logo.png" alt=""></a>
+                </div>
+
+                <div class="forum-bar">
+                    <h2>Forum</h2>
+                    <ul>
+                        <li><a href="https://github.com/sloenthran/JavaForum" target="_blank" title="">SourceCode</a></li>
+                        <li><a href="#" title="" class="ask-question">Ask a question</a></li>
+                    </ul>
+                </div>
+
+                <div class="login_register">
+                    <ul>
+                        <li><a href="#" title="" class="login-box">Login</a></li>
+                        <li><a href="#" title="" class="register-box">Register</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <section class="forum-page">
+        <div class="container">
+            <div class="forum-questions-sec">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="forum-questions">
+                            <div class="usr-question">
+
+                                <div class="usr_quest">
+                                    <h3>Subject ask</h3>
+
+                                    <ul class="react-links">
+                                        <li><a href="#" title=""><i class="fas fa-comment-alt"></i> Comments  15</a></li>
+                                    </ul>
+
+                                    <ul class="quest-tags">
+                                        <li><a href="#" title="">Work</a></li>
+                                        <li><a href="#" title="">Php</a></li>
+                                        <li><a href="#" title="">Design</a></li>
+                                    </ul>
+                                </div>
+
+                                <span class="quest-posted-time"><i class="fa fa-clock-o"></i>3 min ago by Sloenthran</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="widget widget-user">
+                            <h3 class="title-wd">Top User</h3>
+
+                            <ul>
+                                <li>
+                                    <div class="usr-msg-details">
+                                        <div class="usr-mg-info">
+                                            <h3>Jessica William</h3>
+                                            <p>Graphic Designer </p>
+                                        </div>
+                                    </div>
+                                    <span><img src="./images/place/1.png" alt="">1185</span>
+                                </li>
+                                <li>
+                                    <div class="usr-msg-details">
+                                        <div class="usr-mg-info">
+                                            <h3>John Doe</h3>
+                                            <p>PHP Developer</p>
+                                        </div>
+                                    </div>
+                                    <span><img src="./images/place/2.png" alt="">1165</span>
+                                </li>
+                                <li>
+                                    <div class="usr-msg-details">
+                                        <div class="usr-mg-info">
+                                            <h3>Poonam</h3>
+                                            <p>Wordpress Developer </p>
+                                        </div>
+                                    </div>
+                                    <span><img src="./images/place/3.png" alt="">1120</span>
+                                </li>
+                                <li>
+                                    <div class="usr-msg-details">
+                                        <div class="usr-mg-info">
+                                            <h3>Bill Gates</h3>
+                                            <p>C &amp; C++ Developer </p>
+                                        </div>
+                                    </div>
+                                    <span><img src="./images/place/4.png" alt="">1009</span>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footy-sec mn no-margin">
+            <div class="container">
+                <p><img src="./images/copyright.png" alt="">Copyright 2019</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="overview-box" id="question-box">
+        <div class="overview-edit">
+            <h3>Ask a Question</h3>
+
+            <p id="error-question" style="color: red; font-size: large;">You must logged in!</p><br>
+
+            <a href="#" title="" id="close-question-box" class="close-box"><i class="fa fa-close"></i></a>
+        </div>
+    </div>
+
+    <div class="overview-box" id="login-box">
+        <div class="overview-edit">
+            <h3>Login</h3>
+
+            <p id="error-login" style="color: red; font-size: large;"></p><br>
+
+            <form id="login-form">
+                <input type="text" id="login-username" name="username" placeholder="Username" required>
+                <input type="password" id="login-password" name="password" placeholder="Password" minlength="6" required>
+                <button type="submit" class="save">Login</button>
+            </form>
+
+            <a href="#" title="" id="close-login-box" class="close-box"><i class="fa fa-close"></i></a>
+        </div>
+    </div>
+
+    <div class="overview-box" id="register-box">
+        <div class="overview-edit">
+            <h3>Register</h3>
+
+            <p id="error-register" style="color: red; font-size: large;"></p><br>
+
+            <form id="register-form">
+                <input type="text" id="register-username" name="username" placeholder="Username" required>
+                <input type="password" id="register-password" name="password" placeholder="Password"  minlength="6" required>
+                <input type="email" id="register-email" name="email" placeholder="Email" required>
+                <button type="submit" class="save">Register</button>
+            </form>
+
+            <a href="#" title="" id="close-register-box" class="close-box"><i class="fa fa-close"></i></a>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/loginRedirect.js"></script>
+<script type="text/javascript" src="./js/askQuestion.js"></script>
+<script type="text/javascript" src="./js/register.js"></script>
+<script type="text/javascript" src="./js/login.js"></script>
+
+</body>
+=======
 <!DOCTYPE html>
 <html>
 
@@ -180,4 +364,5 @@
 <script type="text/javascript" src="./js/login.js"></script>
 
 </body>
+>>>>>>> ff36bc3c7ef1a861ab0d6c0a99b81e23f2bdc9c0
 </html>

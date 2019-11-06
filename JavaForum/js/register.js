@@ -27,7 +27,7 @@ $("#register-form").on("submit", function() {
     return false;
 });
 
-$(".register-box").on("click", function(){
+$("#register-box").on("click", function(){
     $("#register-box").addClass("open");
     $(".wrapper").addClass("overlay");
     return false;

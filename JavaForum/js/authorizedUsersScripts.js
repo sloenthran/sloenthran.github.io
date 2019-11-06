@@ -3,7 +3,8 @@ $.ajaxSetup({
     {
         xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
         xhr.setRequestHeader("Authorization", 'Bearer ' + localStorage.token);
-    }
+    },
+    dataType: 'json'
 });
 
 $('#logout').click(function() {
@@ -21,18 +22,58 @@ $(document).ready(function() {
     jQuery.ajax ({
         url: "https://java-forum-application.herokuapp.com/user/me",
         type: 'GET',
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        data: {},
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.token);
-        },
         success: function(data){
             $("#user-name").html(data.username);
         },
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function() {
             localStorage.clear();
             location.href = "index.html";
         }
     });
 });
+
+
+/////////////////////////////////// CHANGE PASSWORD ///////////////////////////////////
+
+$("#change-password-form").on("submit", function() {
+    $("#error-change-password").hide();
+
+    var _oldPass = $('#change-password-old').val();
+    var _newPass = $('#change-password-new').val();
+
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/user/change/password",
+        type: "PUT",
+        data: JSON.stringify({oldPassword: _oldPass, newPassword: _newPass}),
+        success: function(data){
+            localStorage.token = data.token;
+
+            $("#change-password-box").removeClass("open");
+            $(".wrapper").removeClass("overlay");
+
+            alert("Password change successful!");
+
+            return true;
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            $("#error-change-password").html(responseText.message);
+            $("#error-change-password").show();
+        }
+    });
+    return false;
+});
+
+$("#change-password-box").on("click", function(){
+    $("#change-password-box").addClass("open");
+    $(".wrapper").addClass("overlay");
+    return false;
+});
+
+$("#change-password-box").on("click", function(){
+    $("#change-password-box").removeClass("open");
+    $(".wrapper").removeClass("overlay");
+    return false;
+});
+
+/////////////////////////////////// END CHANGE PASSWORD ///////////////////////////////////

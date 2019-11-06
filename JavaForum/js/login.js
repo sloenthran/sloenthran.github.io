@@ -30,7 +30,7 @@ $("#login-form").on("submit", function() {
     return false;
 });
 
-$(".login-box").on("click", function(){
+$("#login-box").on("click", function(){
     $("#login-box").addClass("open");
     $(".wrapper").addClass("overlay");
     return false;

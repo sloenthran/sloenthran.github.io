@@ -88,7 +88,7 @@
                                         <div class="usr-mg-info">
                                             <h3>Jessica William</h3>
                                             <p>Graphic Designer </p>
-                                        </div><!--usr-mg-info end-->
+                                        </div>
                                     </div>
                                     <span><img src="./images/place/1.png" alt="">1185</span>
                                 </li>
@@ -115,7 +115,7 @@
                                         <div class="usr-mg-info">
                                             <h3>Bill Gates</h3>
                                             <p>C &amp; C++ Developer </p>
-                                        </div><!--usr-mg-info end-->
+                                        </div>
                                     </div>
                                     <span><img src="./images/place/4.png" alt="">1009</span>
                                 </li>
@@ -142,6 +142,22 @@
 
             <p id="error-question" style="color: red; font-size: large;">You must logged in!</p><br>
 
+        </div>
+    </div>
+
+    <div class="overview-box" id="change-password-box">
+        <div class="overview-edit">
+            <h3>Change password</h3>
+
+            <p id="error-change-password" style="color: red; font-size: large;"></p><br>
+
+            <form id="change-password-form">
+                <input type="password" id="change-password-old" name="password_old" placeholder="Old password" minlength="6" required>
+                <input type="password" id="change-password-new" name="password_new" placeholder="New password" minlength="6" required>
+                <button type="submit" class="save">Change</button>
+            </form>
+
+            <a href="#" title="" id="close-change-password-box" class="close-box"><i class="fa fa-close"></i></a>
         </div>
     </div>
 </div>
