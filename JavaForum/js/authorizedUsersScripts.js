@@ -22,6 +22,9 @@ $(".user-info").click(function() {
     $(".user-account-settingss").slideToggle( "fast");
 });
 
+/////////////////////////////////// INITIAL DATA ///////////////////////////////////
+
+//Get username
 $(document).ready(function() {
     jQuery.ajax ({
         url: "https://java-forum-application.herokuapp.com/user/me",
@@ -36,6 +39,39 @@ $(document).ready(function() {
     });
 });
 
+//Get topics
+$(document).ready(function() {
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/post/topics",
+        type: 'GET',
+        success: function(data) {
+            var output;
+
+            for(var i in data) {
+                output += "<div class=\"usr-question\">" +
+                                "<div class=\"usr_quest\">" +
+                                    "<h3>"+ data[i].title +"</h3>" +
+                                    "<ul class=\"react-links\">" +
+                                        "<li><a href=\"#\" title=\"\"><i class=\"fas fa-comment-alt\"></i> "+ data[i].commentsCount +"</a></li>" +
+                                    "</ul>" +
+                                    "<ul class=\"quest-tags\">" +
+                                        "<li><a href=\"#\" title=\"\">"+ data[i].tag +"</a></li>" +
+                                    "</ul>" +
+                                "</div>" +
+                                "<span class=\"quest-posted-time\"><i class=\"fa fa-clock-o\"></i>3 min ago by Sloenthran</span>" +
+                            "</div>";
+            }
+
+            $("#forum-questions").html(output);
+        },
+        error: function() {
+            localStorage.clear();
+            location.href = "index.html";
+        }
+    });
+});
+
+/////////////////////////////////// END INITIAL DATA ///////////////////////////////////
 
 /////////////////////////////////// CHANGE PASSWORD ///////////////////////////////////
 
