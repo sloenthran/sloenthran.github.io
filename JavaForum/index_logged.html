@@ -20,14 +20,14 @@
         <div class="container">
             <div class="header-data">
                 <div class="logo pd-btm">
-                    <a href="https://sloenthran.github.io/JavaForum/" title=""><img src="./images/logo.png" alt=""></a>
+                    <a href="https://sloenthran.github.io/JavaForum/index_logged.html" title=""><img src="./images/logo.png" alt=""></a>
                 </div>
 
                 <div class="forum-bar">
                     <h2>Forum</h2>
                     <ul>
                         <li><a href="https://github.com/sloenthran/JavaForum" title="">SourceCode</a></li>
-                        <li><a href="#" title="" class="ask-question">Ask a question</a></li>
+                        <li><a href="#" title="" class="ask-question">New topic</a></li>
                     </ul>
                 </div>
 
@@ -120,10 +120,19 @@
 
     <div class="overview-box" id="question-box">
         <div class="overview-edit">
-            <h3>Ask a Question</h3>
+            <h3>New topic</h3>
 
-            <p id="error-question" style="color: red; font-size: large;">You must logged in!</p><br>
+            <p id="error-question" style="color: red; font-size: large;"></p><br>
 
+            <form id="question-form">
+
+                <input type="text" id="question-title" name="question-title" placeholder="Title" required>
+                <textarea id="question-text" name="question-text" placeholder="Text" required></textarea>
+                <select id="question-tag" name="question-tag"></select>
+                <button type="submit" class="save">Create</button>
+            </form>
+
+            <a href="#" title="" id="close-question-box" class="close-box"><i class="fa fa-close"></i></a>
         </div>
     </div>
 

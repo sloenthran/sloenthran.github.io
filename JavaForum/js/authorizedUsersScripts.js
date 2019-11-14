@@ -71,6 +71,23 @@ $(document).ready(function() {
     });
 });
 
+//Get tags
+$(document).ready(function() {
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/post/tags",
+        type: 'GET',
+        success: function(data) {
+            for(var i in data) {
+                $("#question-tag").append(new Option(data[i].tag, data[i].tag));
+            }
+        },
+        error: function() {
+            localStorage.clear();
+            location.href = "index.html";
+        }
+    });
+});
+
 /////////////////////////////////// END INITIAL DATA ///////////////////////////////////
 
 /////////////////////////////////// CHANGE PASSWORD ///////////////////////////////////
@@ -157,3 +174,48 @@ $("#close-change-email-box").on("click", function(){
 });
 
 /////////////////////////////////// END CHANGE EMAIL ///////////////////////////////////
+
+/////////////////////////////////// NEW TOPIC ///////////////////////////////////
+
+$("#question-form").on("submit", function() {
+    $("#error-question").hide();
+
+    var _title = $('#question-title').val();
+    var _text = $('#question-text').val();
+    var _tag = $("#question-tag option:selected").text();;
+
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/post/topic",
+        type: "POST",
+        data: JSON.stringify({title: _title, tag: _tag, text: _text}),
+        dataType: "json",
+        success: function(data){
+            $("#question-box").removeClass("open");
+            $(".wrapper").removeClass("overlay");
+
+            alert("Topic created!");
+
+            return true;
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            $("#error-question").html(responseText.message);
+            $("#error-question").show();
+        }
+    });
+    return false;
+});
+
+$(".ask-question").on("click", function(){
+    $("#question-box").addClass("open");
+    $(".wrapper").addClass("overlay");
+    return false;
+});
+
+$("#close-question-box").on("click", function(){
+    $("#question-box").removeClass("open");
+    $(".wrapper").removeClass("overlay");
+    return false;
+});
+
+/////////////////////////////////// END NEW TOPIC ///////////////////////////////////
