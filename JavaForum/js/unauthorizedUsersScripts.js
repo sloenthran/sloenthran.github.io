@@ -4,6 +4,14 @@ $(document).ready(function() {
     }
 });
 
+$.ajaxSetup({
+    beforeSend: function (xhr)
+    {
+        xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    },
+    dataType: 'json'
+});
+
 $(".ask-question").on("click", function(){
     $("#question-box").addClass("open");
     $(".wrapper").addClass("overlay");
@@ -39,10 +47,6 @@ $(document).ready(function() {
             }
 
             $(".forum-questions").html(output);
-        },
-        error: function() {
-            localStorage.clear();
-            location.href = "index.html";
         }
     });
 });
@@ -61,7 +65,6 @@ $("#register-form").on("submit", function() {
         type: "PUT",
         data: JSON.stringify({username: _username, password: _password, email: _email}),
         dataType: "json",
-        contentType: "application/json; charset=utf-8",
         success: function(){
             $("#register-box").removeClass("open");
             $(".wrapper").removeClass("overlay");
@@ -105,7 +108,6 @@ $("#login-form").on("submit", function() {
         type: "POST",
         data: JSON.stringify({username: _username, password: _password}),
         dataType: "json",
-        contentType: "application/json; charset=utf-8",
         success: function(data){
             localStorage.token = data.token;
 
