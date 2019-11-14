@@ -45,7 +45,7 @@ $(document).ready(function() {
         url: "https://java-forum-application.herokuapp.com/post/topics",
         type: 'GET',
         success: function(data) {
-            var output;
+            var output = "";
 
             for(var i in data) {
                 output += "<div class=\"usr-question\">" +
@@ -58,11 +58,11 @@ $(document).ready(function() {
                                         "<li><a href=\"#\" title=\"\">"+ data[i].tag +"</a></li>" +
                                     "</ul>" +
                                 "</div>" +
-                                "<span class=\"quest-posted-time\"><i class=\"fa fa-clock-o\"></i>3 min ago by Sloenthran</span>" +
+                                "<span class=\"quest-posted-time\"><i class=\"fa fa-clock-o\"></i>"+ data[i].createdDate.replace("T", " ") +" by "+ data[i].createdBy +"</span>" +
                             "</div>";
             }
 
-            $("#forum-questions").html(output);
+            $(".forum-questions").html(output);
         },
         error: function() {
             localStorage.clear();

@@ -16,6 +16,37 @@ $("#close-question-box").on("click", function(){
     return false;
 });
 
+$(document).ready(function() {
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/post/topics",
+        type: 'GET',
+        success: function(data) {
+            var output = "";
+
+            for(var i in data) {
+                output += "<div class=\"usr-question\">" +
+                    "<div class=\"usr_quest\">" +
+                    "<h3>"+ data[i].title +"</h3>" +
+                    "<ul class=\"react-links\">" +
+                    "<li><a href=\"#\" title=\"\"><i class=\"fas fa-comment-alt\"></i> "+ data[i].commentsCount +"</a></li>" +
+                    "</ul>" +
+                    "<ul class=\"quest-tags\">" +
+                    "<li><a href=\"#\" title=\"\">"+ data[i].tag +"</a></li>" +
+                    "</ul>" +
+                    "</div>" +
+                    "<span class=\"quest-posted-time\"><i class=\"fa fa-clock-o\"></i>"+ data[i].createdDate.replace("T", " ") +" by "+ data[i].createdBy +"</span>" +
+                    "</div>";
+            }
+
+            $(".forum-questions").html(output);
+        },
+        error: function() {
+            localStorage.clear();
+            location.href = "index.html";
+        }
+    });
+});
+
 /////////////////////////////////// REGISTER ///////////////////////////////////
 
 $("#register-form").on("submit", function() {
