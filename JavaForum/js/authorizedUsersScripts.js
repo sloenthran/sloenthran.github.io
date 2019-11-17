@@ -176,6 +176,8 @@ function getTopic(topicId) {
                         "<ul>";
 
             for(var i in data.comments) {
+                if(i == 0) continue;
+
                 output += "<li>" +
                         "<div class=\"comment-list\">" +
                             "<div class=\"comment\">" +
@@ -190,6 +192,23 @@ function getTopic(topicId) {
             output += "</ul></div></div></div>";
 
             $(".usr-question").html(output);
+
+            var widget = "<ul>" +
+                    "<li>" +
+                        "<i class=\"fa fa-heart\"></i>" +
+                        "<span>"+ data.topic.likesCount +"</span>" +
+                    "</li>" +
+                    "<li>" +
+                        "<i class=\"fa fa-comment\"></i>" +
+                        "<span>"+ data.topic.commentsCount +"</span>" +
+                    "</li>" +
+                    "<li>" +
+                        "<i class=\"fa fa-eye\"></i>" +
+                        "<span>"+ data.topic.viewedCount +"</span>" +
+                    "</li>" +
+                "</ul>";
+
+            $(".widget widget-feat").html(widget);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             var responseText = jQuery.parseJSON(jqXHR.responseText);
