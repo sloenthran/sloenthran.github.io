@@ -55,56 +55,45 @@
             <div class="forum-questions-sec">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="forum-questions">
-                            <!-- Space for topics !-->
+                        <div class="forum-post-view">
+                            <div class="usr-question">
+                                <!-- Space for topics !-->
+                            </div>
+                        </div>
+                        <div class="post-comment-box">
+                            <div class="user-poster">
+                                <div class="post_comment_sec">
+                                    <form>
+                                        <textarea placeholder="Your Answer"></textarea>
+                                        <button type="submit">Post Answer</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                     <div class="col-lg-4">
-                        <div class="widget widget-user">
-                            <h3 class="title-wd">Top User</h3>
-
+                        <div class="widget widget-feat">
                             <ul>
                                 <li>
-                                    <div class="usr-msg-details">
-                                        <div class="usr-mg-info">
-                                            <h3>Jessica William</h3>
-                                            <p>Graphic Designer </p>
-                                        </div>
-                                    </div>
-                                    <span><img src="./images/place/1.png" alt="">1185</span>
+                                    <i class="fa fa-heart"></i>
+                                    <span>1185</span>
                                 </li>
                                 <li>
-                                    <div class="usr-msg-details">
-                                        <div class="usr-mg-info">
-                                            <h3>John Doe</h3>
-                                            <p>PHP Developer</p>
-                                        </div>
-                                    </div>
-                                    <span><img src="./images/place/2.png" alt="">1165</span>
+                                    <i class="fa fa-comment"></i>
+                                    <span>1165</span>
                                 </li>
                                 <li>
-                                    <div class="usr-msg-details">
-                                        <div class="usr-mg-info">
-                                            <h3>Poonam</h3>
-                                            <p>Wordpress Developer </p>
-                                        </div>
-                                    </div>
-                                    <span><img src="./images/place/3.png" alt="">1120</span>
+                                    <i class="fa fa-share-alt"></i>
+                                    <span>1120</span>
                                 </li>
                                 <li>
-                                    <div class="usr-msg-details">
-                                        <div class="usr-mg-info">
-                                            <h3>Bill Gates</h3>
-                                            <p>C &amp; C++ Developer </p>
-                                        </div>
-                                    </div>
-                                    <span><img src="./images/place/4.png" alt="">1009</span>
+                                    <i class="fa fa-eye"></i>
+                                    <span>1009</span>
                                 </li>
                             </ul>
-
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -174,7 +163,15 @@
 <script type="text/javascript">
     getTags();
     getUsername();
-    getTopics();
+
+    window.$_GET = new URLSearchParams(location.search);
+    var id = $_GET.get('id');
+
+    if(id == null) {
+        location.href = "index_logged.html";
+    }
+
+    getTopic(id);
 </script>
 
 </body>
