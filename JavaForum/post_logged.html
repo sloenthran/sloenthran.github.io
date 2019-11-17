@@ -63,9 +63,11 @@
                         <div class="post-comment-box">
                             <div class="user-poster">
                                 <div class="post_comment_sec">
-                                    <form>
-                                        <textarea placeholder="Your Answer"></textarea>
-                                        <button type="submit">Post Answer</button>
+                                    <p id="error-post" style="color: red; font-size: large;"></p>
+
+                                    <form id="post-form">
+                                        <textarea id="post-text" placeholder="Your Answer"></textarea>
+                                        <button type="submit">Send</button>
                                     </form>
                                 </div>
                             </div>
@@ -147,14 +149,45 @@
     getTags();
     getUsername();
 
-    window.$_GET = new URLSearchParams(location.search);
-    var id = $_GET.get('id');
+    function getTopicId() {
+        window.$_GET = new URLSearchParams(location.search);
+        var id = $_GET.get('id');
 
-    if(id == null) {
-        location.href = "index_logged.html";
+        if(id == null) {
+            location.href = "index_logged.html";
+        }
+
+        return id;
     }
 
+    var id = getTopicId();
+
     getTopic(id);
+
+    $("#post-form").on("submit", function(id) {
+        $("#error-post").hide();
+
+        var _text = $('#post-text').val();
+        var _id = getTopicId();
+
+        jQuery.ajax ({
+            url: "https://java-forum-application.herokuapp.com/post/comment",
+            type: "POST",
+            data: JSON.stringify({topicId: _id, text: _text}),
+            success: function(data){
+                alert("Comment added!");
+                location.href = "post_logged.html?id=" + data.topicId;
+
+                return true;
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                var responseText = jQuery.parseJSON(jqXHR.responseText);
+                $("#error-post").html(responseText.message);
+                $("#error-post").show();
+            }
+        });
+        return false;
+    });
 </script>
 
 </body>
