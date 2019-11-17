@@ -182,8 +182,17 @@ function getTopic(topicId) {
                         "<div class=\"comment-list\">" +
                             "<div class=\"comment\">" +
                                 "<h3>"+ data.comments[i].author +"</h3>" +
-                                "<span><i class=\"fa fa-clock-o\"></i>"+ data.comments[i].createdDate.replace("T", " ") +"</span>" +
-                                "<p>"+ data.comments[i].text +"</p>" +
+                                "<span><i class=\"fa fa-clock-o\"></i>"+ data.comments[i].createdDate.replace("T", " ") +"</span>";
+
+                if(localStorage.moderator === 'OK') {
+                    output += "&nbsp;&nbsp;&nbsp;<span><i class=\"fa fa-trash\"></i> Delete post</span>";
+                }
+
+                if(localStorage.admin === 'OK') {
+                    output += "&nbsp;&nbsp;&nbsp;<span><i class=\"fa fa-edit\"></i> Edit post</span>";
+                }
+
+                output +=       "<p>"+ data.comments[i].text +"</p>" +
                             "</div>" +
                         "</div>" +
                     "</li>";
@@ -256,16 +265,16 @@ function getUserInfo() {
         success: function(data){
             $("#user-name").html(data.username);
 
-            localStorage.moderator = false;
-            localStorage.admin = false;
+            localStorage.moderator = 'NOT';
+            localStorage.admin = 'NOT';
 
             for(var i in data.authorities) {
-                if(data.authorities[i].role.search('ADMIN')) {
-                    localStorage.admin = true;
+                if(data.authorities[i].role === 'ADMIN') {
+                    localStorage.admin = 'OK';
                 }
 
-                if(data.authorities[i].role.search('MODERATOR')) {
-                    localStorage.moderator = true;
+                if(data.authorities[i].role === 'MODERATOR') {
+                    localStorage.moderator = 'OK';
                 }
             }
         },
