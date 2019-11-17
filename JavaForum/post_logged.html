@@ -147,7 +147,7 @@
 
 <script type="text/javascript">
     getTags();
-    getUsername();
+    getUserInfo();
 
     function getTopicId() {
         window.$_GET = new URLSearchParams(location.search);
@@ -160,11 +160,9 @@
         return id;
     }
 
-    var id = getTopicId();
+    getTopic(getTopicId());
 
-    getTopic(id);
-
-    $("#post-form").on("submit", function(id) {
+    $("#post-form").on("submit", function() {
         $("#error-post").hide();
 
         var _text = $('#post-text').val();

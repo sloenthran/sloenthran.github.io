@@ -249,12 +249,25 @@ function getTopics() {
     });
 }
 
-function getUsername() {
+function getUserInfo() {
     jQuery.ajax ({
         url: "https://java-forum-application.herokuapp.com/user/me",
         type: 'GET',
         success: function(data){
             $("#user-name").html(data.username);
+
+            localStorage.moderator = false;
+            localStorage.admin = false;
+
+            for(var i in data.authorities) {
+                if(data.authorities[i].role.search('ADMIN')) {
+                    localStorage.admin = true;
+                }
+
+                if(data.authorities[i].role.search('MODERATOR')) {
+                    localStorage.moderator = true;
+                }
+            }
         },
         error: function() {
             localStorage.clear();
