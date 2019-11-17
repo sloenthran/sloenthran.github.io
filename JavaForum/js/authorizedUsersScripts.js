@@ -208,7 +208,7 @@ function getTopic(topicId) {
                     "</li>" +
                 "</ul>";
 
-            $(".widget widget-feat").html(widget);
+            $(".widget.widget-feat").html(widget);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             var responseText = jQuery.parseJSON(jqXHR.responseText);
