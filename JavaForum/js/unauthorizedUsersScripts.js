@@ -34,9 +34,9 @@ $(document).ready(function() {
             for(var i in data) {
                 output += "<div class=\"usr-question\">" +
                     "<div class=\"usr_quest\">" +
-                    "<h3>"+ data[i].title +"</h3>" +
+                    "<h3><a href=\"post.html?id="+data[i].id+"\" title=\"\">"+ data[i].title +"</a></h3>" +
                     "<ul class=\"react-links\">" +
-                    "<li><a href=\"#\" title=\"\"><i class=\"fas fa-comment-alt\"></i> "+ data[i].commentsCount +"</a></li>" +
+                    "<li><a href=\"post.html?id="+data[i].id+"\" title=\"\"><i class=\"fas fa-comment-alt\"></i> "+ data[i].commentsCount +"</a></li>" +
                     "</ul>" +
                     "<ul class=\"quest-tags\">" +
                     "<li><a href=\"#\" title=\"\">"+ data[i].tag +"</a></li>" +
@@ -47,6 +47,10 @@ $(document).ready(function() {
             }
 
             $(".forum-questions").html(output);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            alert(responseText.message);
         }
     });
 });
@@ -141,3 +145,49 @@ $("#close-login-box").on("click", function(){
 });
 
 /////////////////////////////////// END LOGIN ///////////////////////////////////
+
+function getTopic(topicId) {
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/post/topic/?topicId="+ topicId,
+        type: 'GET',
+        success: function(data) {
+            var output = "";
+
+            output += "<div class=\"usr_quest\">" +
+                "<h3>"+ data.topic.title +"</h3>" +
+                "<span><i class=\"fa fa-clock-o\"></i>"+ data.topic.createdDate.replace("T", " ") +"</span>" +
+                "<ul class=\"react-links\">" +
+                "<li><a href=\"#\" title=\"\"><i class=\"fa fa-heart\"></i> Vote "+ data.topic.likesCount +"</a></li>" +
+                "</ul>" +
+                "<ul class=\"quest-tags\">" +
+                "<li><a href=\"#\" title=\"\">"+ data.topic.tag +"</a></li>" +
+                "</ul>" +
+                "<p>"+data.comments[0].text+"</p>" +
+                "<div class=\"comment-section\">" +
+                "<h3>"+ data.topic.commentsCount +" Comments</h3>" +
+                "<div class=\"comment-sec\">" +
+                "<ul>";
+
+            for(var i in data.comments) {
+                output += "<li>" +
+                    "<div class=\"comment-list\">" +
+                    "<div class=\"comment\">" +
+                    "<h3>"+ data.comments[i].author +"</h3>" +
+                    "<span><i class=\"fa fa-clock-o\"></i>"+ data.comments[i].createdDate.replace("T", " ") +"</span>" +
+                    "<p>"+ data.comments[i].text +"</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</li>";
+            }
+
+            output += "</ul></div></div></div>";
+
+            $(".usr-question").html(output);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            alert(responseText.message);
+            location.href = "index_logged.html";
+        }
+    });
+}

@@ -126,6 +126,7 @@ $("#question-form").on("submit", function() {
             $(".wrapper").removeClass("overlay");
 
             alert("Topic created!");
+            location.href = "index_logged.html";
 
             return true;
         },
@@ -196,7 +197,6 @@ function getTopic(topicId) {
             location.href = "index_logged.html";
         }
     });
-
 }
 
 function getTopics() {
@@ -209,9 +209,9 @@ function getTopics() {
             for(var i in data) {
                 output += "<div class=\"usr-question\">" +
                     "<div class=\"usr_quest\">" +
-                    "<h3><a href=\"post.html?id="+data[i].id+"\" title=\"\">"+ data[i].title +"</a></h3>" +
+                    "<h3><a href=\"post_logged.html?id="+data[i].id+"\" title=\"\">"+ data[i].title +"</a></h3>" +
                     "<ul class=\"react-links\">" +
-                    "<li><a href=\"post.html?id="+data[i].id+"\" title=\"\"><i class=\"fas fa-comment-alt\"></i> "+ data[i].commentsCount +"</a></li>" +
+                    "<li><a href=\"post_logged.html?id="+data[i].id+"\" title=\"\"><i class=\"fas fa-comment-alt\"></i> "+ data[i].commentsCount +"</a></li>" +
                     "</ul>" +
                     "<ul class=\"quest-tags\">" +
                     "<li><a href=\"#\" title=\"\">"+ data[i].tag +"</a></li>" +
@@ -223,9 +223,9 @@ function getTopics() {
 
             $(".forum-questions").html(output);
         },
-        error: function() {
-            localStorage.clear();
-            location.href = "index.html";
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            alert(responseText.message);
         }
     });
 }
