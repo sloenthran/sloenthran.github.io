@@ -186,11 +186,11 @@ function getTopic() {
                                 "<h3>"+ data.comments[i].author +"</h3>" +
                                 "<span><i class=\"fa fa-clock-o\"></i>"+ data.comments[i].createdDate.replace("T", " ") +"</span>";
 
-                if(localStorage.moderator === 'OK') {
+                if(localStorage.admin === 'OK') {
                     output += "&nbsp;&nbsp;&nbsp;<span onclick='deleteComment("+ data.comments[i].id +")'><i class=\"fa fa-trash\"></i> Delete post</span>";
                 }
 
-                if(localStorage.admin === 'OK') {
+                if(localStorage.moderator === 'OK') {
                     output += "&nbsp;&nbsp;&nbsp;<span><i class=\"fa fa-edit\"></i> Edit post</span>";
                 }
 
