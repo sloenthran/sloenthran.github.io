@@ -148,19 +148,7 @@
 <script type="text/javascript">
     getTags();
     getUserInfo();
-
-    function getTopicId() {
-        window.$_GET = new URLSearchParams(location.search);
-        var id = $_GET.get('id');
-
-        if(id == null) {
-            location.href = "index_logged.html";
-        }
-
-        return id;
-    }
-
-    getTopic(getTopicId());
+    getTopic();
 
     $("#post-form").on("submit", function() {
         $("#error-post").hide();

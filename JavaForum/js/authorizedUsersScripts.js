@@ -153,7 +153,9 @@ $("#close-question-box").on("click", function(){
 
 /////////////////////////////////// END NEW TOPIC ///////////////////////////////////
 
-function getTopic(topicId) {
+function getTopic() {
+    var topicId = getTopicId();
+
     jQuery.ajax ({
         url: "https://java-forum-application.herokuapp.com/post/topic/" + topicId,
         type: 'GET',
@@ -185,7 +187,7 @@ function getTopic(topicId) {
                                 "<span><i class=\"fa fa-clock-o\"></i>"+ data.comments[i].createdDate.replace("T", " ") +"</span>";
 
                 if(localStorage.moderator === 'OK') {
-                    output += "&nbsp;&nbsp;&nbsp;<span><i class=\"fa fa-trash\"></i> Delete post</span>";
+                    output += "&nbsp;&nbsp;&nbsp;<span onclick='deleteComment("+ data.comments[i].id +")'><i class=\"fa fa-trash\"></i> Delete post</span>";
                 }
 
                 if(localStorage.admin === 'OK') {
@@ -299,4 +301,30 @@ function getTags() {
             location.href = "index.html";
         }
     });
+}
+
+function deleteComment(id) {
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/post/comment/" + id,
+        type: 'DELETE',
+        success: function(data) {
+            alert(data.message);
+            location.href = "post_logged.html?id=" + getTopicId();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            alert(responseText.message);
+        }
+    });
+}
+
+function getTopicId() {
+    window.$_GET = new URLSearchParams(location.search);
+    var id = $_GET.get('id');
+
+    if(id == null) {
+        location.href = "index_logged.html";
+    }
+
+    return id;
 }
