@@ -155,7 +155,7 @@ $("#close-question-box").on("click", function(){
 
 function getTopic(topicId) {
     jQuery.ajax ({
-        url: "https://java-forum-application.herokuapp.com/post/topic/?topicId="+ topicId,
+        url: "https://java-forum-application.herokuapp.com/post/topic/" + topicId,
         type: 'GET',
         success: function(data) {
             var output = "";
