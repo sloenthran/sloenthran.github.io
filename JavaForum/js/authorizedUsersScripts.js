@@ -166,7 +166,7 @@ function getTopic() {
                 "<h3>"+ data.topic.title +"</h3>" +
                 "<span><i class=\"fa fa-clock-o\"></i>"+ data.topic.createdDate.replace("T", " ") +"</span>" +
                 "<ul class=\"react-links\">" +
-                    "<li><a href=\"#\" title=\"\"><i class=\"fa fa-heart\"></i> Vote "+ data.topic.likesCount +"</a></li>" +
+                    "<li><a href=\"#\" title=\"\" onclick='like()'><i class=\"fa fa-heart\"></i> Vote "+ data.topic.likesCount +"</a></li>" +
                 "</ul>" +
                 "<ul class=\"quest-tags\">" +
                     "<li><a href=\"#\" title=\"\">"+ data.topic.tag +"</a></li>" +
@@ -187,11 +187,11 @@ function getTopic() {
                                 "<span><i class=\"fa fa-clock-o\"></i>"+ data.comments[i].createdDate.replace("T", " ") +"</span>";
 
                 if(localStorage.admin === 'OK') {
-                    output += "&nbsp;&nbsp;&nbsp;<span onclick='deleteComment("+ data.comments[i].id +")'><i class=\"fa fa-trash\"></i> Delete post</span>";
+                    output += "&nbsp;&nbsp;&nbsp;<span onclick='deleteComment("+ data.comments[i].id +")'><i class=\"fa fa-trash\"></i> Delete comment</span>";
                 }
 
                 if(localStorage.moderator === 'OK') {
-                    output += "&nbsp;&nbsp;&nbsp;<span><i class=\"fa fa-edit\"></i> Edit post</span>";
+                    output += "&nbsp;&nbsp;&nbsp;<span><i class=\"fa fa-edit\"></i> Edit comment</span>";
                 }
 
                 output +=       "<p>"+ data.comments[i].text +"</p>" +
@@ -310,6 +310,21 @@ function deleteComment(id) {
         success: function(data) {
             alert(data.message);
             location.href = "post_logged.html?id=" + getTopicId();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            alert(responseText.message);
+        }
+    });
+}
+
+function like() {
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/post/topic/like/" + getTopicId(),
+        type: 'PUT',
+        success: function(data) {
+            alert(data.message);
+            location.href = "post_logged.html?id=" + data.topicId;
         },
         error: function(jqXHR, textStatus, errorThrown) {
             var responseText = jQuery.parseJSON(jqXHR.responseText);
