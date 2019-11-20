@@ -343,3 +343,36 @@ function getTopicId() {
 
     return id;
 }
+
+function getMostLikedTopics() {
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/post/topics/likes",
+        type: 'GET',
+        success: function(data) {
+            var output = "<h3 class=\"title-wd\">Most liked Topics</h3>" +
+                "<ul>";
+
+            for(var i in data) {
+                var image = i;
+                image++;
+
+                output += "<li>" +
+                    "<div class=\"usr-msg-details\">" +
+                    "<div class=\"usr-mg-info\">" +
+                    "<a href='post_logged.html?id="+ data[i].topicId +"'><h3>"+ data[i].topicName +"</h3></a>" +
+                    "</div>" +
+                    "</div>" +
+                    "<span><img src=\"./images/place/"+ image +".png\" alt=\"\">"+ data[i].topicLikes +"</span>" +
+                    "</li>"
+            }
+
+            output += "</ul>";
+
+            $(".widget.widget-user").html(output);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            alert(responseText.message);
+        }
+    });
+}
