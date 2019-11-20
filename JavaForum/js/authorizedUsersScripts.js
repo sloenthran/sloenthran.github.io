@@ -179,8 +179,8 @@ $("#edit-form").on("submit", function() {
     var _text = $('#edit-text').val();
 
     jQuery.ajax ({
-        url: "https://java-forum-application.herokuapp.com/post/topic",
-        type: "POST",
+        url: "https://java-forum-application.herokuapp.com/post/comment",
+        type: "PUT",
         data: JSON.stringify({commentId: _id, text: _text}),
         dataType: "json",
         success: function(data){
