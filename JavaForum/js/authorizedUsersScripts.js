@@ -191,7 +191,7 @@ function getTopic() {
                 }
 
                 if(localStorage.moderator === 'OK') {
-                    output += "&nbsp;&nbsp;&nbsp;<span><i class=\"fa fa-edit\"></i> Edit comment</span>";
+                    output += "&nbsp;&nbsp;&nbsp;<span onclick='editComment("+ data.comments[i].id +")'><i class=\"fa fa-edit\"></i> Edit comment</span>";
                 }
 
                 output +=       "<p>"+ data.comments[i].text +"</p>" +
@@ -317,6 +317,23 @@ function deleteComment(id) {
         }
     });
 }
+
+function editComment(id) {
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/post/comment/" + id,
+        type: 'GET',
+        success: function(data) {
+            $("#edit-text").html(data.text);
+            $("#edit-box").addClass("open");
+            $(".wrapper").addClass("overlay");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            alert(responseText.message);
+        }
+    });
+}
+
 
 function like() {
     jQuery.ajax ({
