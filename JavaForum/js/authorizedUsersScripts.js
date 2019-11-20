@@ -153,6 +153,62 @@ $("#close-question-box").on("click", function(){
 
 /////////////////////////////////// END NEW TOPIC ///////////////////////////////////
 
+/////////////////////////////////// EDIT COMMENT ///////////////////////////////////
+
+function prepareEditComment(id) {
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/post/comment/" + id,
+        type: 'GET',
+        success: function(data) {
+            $("#edit-text").val(data.text);
+            $("#edit-id").val(data.id);
+            $("#edit-box").addClass("open");
+            $(".wrapper").addClass("overlay");
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            alert(responseText.message);
+        }
+    });
+}
+
+$("#edit-form").on("submit", function() {
+    $("#error-edit").hide();
+
+    var _id = $('#edit-id').val();
+    var _text = $('#edit-text').val();
+
+    jQuery.ajax ({
+        url: "https://java-forum-application.herokuapp.com/post/topic",
+        type: "POST",
+        data: JSON.stringify({commentId: _id, text: _text}),
+        dataType: "json",
+        success: function(data){
+            $("#edit-box").removeClass("open");
+            $(".wrapper").removeClass("overlay");
+
+            alert("Comment edited!");
+            location.href = "post_logged.html?id=" + data.topicId;
+
+            return true;
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            var responseText = jQuery.parseJSON(jqXHR.responseText);
+            $("#error-edit").html(responseText.message);
+            $("#error-edit").show();
+        }
+    });
+    return false;
+});
+
+$("#close-edit-box").on("click", function(){
+    $("#edit-box").removeClass("open");
+    $(".wrapper").removeClass("overlay");
+    return false;
+});
+
+/////////////////////////////////// END EDIT COMMENT ///////////////////////////////////
+
 function getTopic() {
     var topicId = getTopicId();
 
@@ -191,7 +247,7 @@ function getTopic() {
                 }
 
                 if(localStorage.moderator === 'OK') {
-                    output += "&nbsp;&nbsp;&nbsp;<span onclick='editComment("+ data.comments[i].id +")'><i class=\"fa fa-edit\"></i> Edit comment</span>";
+                    output += "&nbsp;&nbsp;&nbsp;<span onclick='prepareEditComment("+ data.comments[i].id +")'><i class=\"fa fa-edit\"></i> Edit comment</span>";
                 }
 
                 output +=       "<p>"+ data.comments[i].text +"</p>" +
@@ -317,23 +373,6 @@ function deleteComment(id) {
         }
     });
 }
-
-function editComment(id) {
-    jQuery.ajax ({
-        url: "https://java-forum-application.herokuapp.com/post/comment/" + id,
-        type: 'GET',
-        success: function(data) {
-            $("#edit-text").html(data.text);
-            $("#edit-box").addClass("open");
-            $(".wrapper").addClass("overlay");
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            var responseText = jQuery.parseJSON(jqXHR.responseText);
-            alert(responseText.message);
-        }
-    });
-}
-
 
 function like() {
     jQuery.ajax ({

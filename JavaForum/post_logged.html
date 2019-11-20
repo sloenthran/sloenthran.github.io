@@ -145,9 +145,10 @@
         <div class="overview-edit">
             <h3>Edit comment</h3>
 
-            <p id="error-edit-text" style="color: red; font-size: large;"></p><br>
+            <p id="error-edit" style="color: red; font-size: large;"></p><br>
 
             <form id="edit-form">
+                <input type="hidden" id="edit-id" name="edit-id">
                 <input type="text" id="edit-text" name="edit-text" placeholder="Post data" required>
                 <button type="submit" class="save">Change</button>
             </form>
