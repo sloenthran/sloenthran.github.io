@@ -155,7 +155,7 @@ function getTopic(topicId) {
 
             output += "<div class=\"usr_quest\">" +
                 "<h3>"+ data.topic.title +"</h3>" +
-                "<span><i class=\"fa fa-clock-o\"></i>"+ data.topic.createdDate.replace("T", " ") +"</span>" +
+                "<span><i class=\"fa fa-clock-o\"></i>"+ data.topic.createdDate.replace("T", " ")  +" by "+ data.comments[0].author +"</span>" +
                 "<ul class=\"react-links\">" +
                 "<li><a href=\"#\" title=\"\"><i class=\"fa fa-heart\"></i> Vote "+ data.topic.likesCount +"</a></li>" +
                 "</ul>" +
